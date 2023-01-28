@@ -7,13 +7,15 @@ public class FragmentController : MonoBehaviour
     public float spawn_rate = 2.0f;
     private float spawn_timer = 0.0f;
 
+    public GameObject fragment1;
+    public GameObject fragment2;
+
     private GameObject[] fragments;
 
     // Start is called before the first frame update
     void Start()
     {
-        fragments = Resources.FindObjectsOfTypeAll(typeof(GameObject)).Cast<GameObject>().Where(g => g.CompareTag("LevelFragment")).toArray();
-        Debug.Log(fragments);
+        fragments = new GameObject[] { fragment1, fragment2 };
     }
 
     // Update is called once per frame
@@ -23,10 +25,6 @@ public class FragmentController : MonoBehaviour
         if (spawn_timer <= 0.0f)
         {
             spawn_timer = spawn_rate;
-
-            Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            float h = cam.orthographicSize;
-            float w = h * cam.aspect;
 
             GameObject fragment = fragments[Random.Range(0, fragments.Length)];
             Instantiate(fragment, transform.position, transform.rotation);
