@@ -10,6 +10,8 @@ public class SylviaController : MonoBehaviour
     public float decel = 0.99f;
     public float max_speed = 5.0f;
 
+    public float max_height = 0.3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,12 @@ public class SylviaController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        updatePos();
+        setPosBounds();
+    }
+
+    void updatePos()
     {
         bool up = Input.GetKey(KeyCode.W);
         bool down = Input.GetKey(KeyCode.S);
@@ -64,5 +72,36 @@ public class SylviaController : MonoBehaviour
 
         transform.position += new Vector3(vel.x, vel.y, 0);
 
+    }
+
+    void setPosBounds()
+    {
+        // Calculate orthographic camera bounds
+        Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        float h = cam.orthographicSize;
+        float w = h * cam.aspect;
+        Vector3 p = transform.position;
+        float safe_pad = 0.5f;
+
+
+        if (transform.position.x < -w + safe_pad)
+        {
+            transform.position = new Vector3(-w + safe_pad, p.y, p.z);
+        }
+        if (transform.position.x > w - safe_pad)
+        {
+            transform.position = new Vector3(w - safe_pad, p.y, p.z);
+        }
+
+        float bottom = -h + safe_pad;
+        if (transform.position.y < bottom)
+        {
+            transform.position = new Vector3(p.x, bottom, p.z);
+        }
+        float top = (-h * max_height) - safe_pad;
+        if (transform.position.y > top)
+        {
+            transform.position = new Vector3(p.x, top, p.z);
+        }
     }
 }
