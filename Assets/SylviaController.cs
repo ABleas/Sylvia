@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SylviaController : MonoBehaviour
 {
-    private Vector2 accel = Vector2.zero;
+    private Vector2 dir = Vector2.zero;
     public Vector2 vel = Vector2.zero;
-    public float speed = 1f;
-    public float decel = 0.5f;
+    public float acceleration = 0.25f;
+    public float decel = 0.99f;
+    public float max_speed = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,39 +19,48 @@ public class SylviaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool up = Input.GetKeyDown(KeyCode.W);
-        bool down = Input.GetKeyDown(KeyCode.S);
-        bool left = Input.GetKeyDown(KeyCode.A);
-        bool right = Input.GetKeyDown(KeyCode.D);
-
-        if (!up && !down)
-            accel.y *= decel * Time.deltaTime;
-
-        if (!left && !right)
-            accel.x *= decel * Time.deltaTime;
+        bool up = Input.GetKey(KeyCode.W);
+        bool down = Input.GetKey(KeyCode.S);
+        bool left = Input.GetKey(KeyCode.A);
+        bool right = Input.GetKey(KeyCode.D);
 
         if (up)
         {
-            accel += Vector2.up * speed * Time.deltaTime;
+            dir = Vector2.up;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (down)
         {
-            accel += Vector2.down * speed * Time.deltaTime;
+            dir = Vector2.down;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (left)
         {
-            accel += Vector2.left * speed * Time.deltaTime;
+            dir = new Vector2(-1.0f, dir.y);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (right)
         {
-            accel += Vector2.right * speed * Time.deltaTime;
+            dir = new Vector2(1.0f, dir.y);
         }
 
-        accel = Vector2.ClampMagnitude(accel, 2);
+        dir = Vector2.ClampMagnitude(dir, acceleration);
 
-        vel += accel;
-        vel = Vector2.ClampMagnitude(vel, 20);
+        if (!up && !down)
+        {
+            dir = new Vector2(dir.x, 0.0f);
+            vel *= new Vector2(1.0f, decel);
+        }
+
+        if (!left && !right)
+        {
+            dir = new Vector2(0.0f, dir.y);
+            vel *= new Vector2(decel, 1.0f);
+        }
+
+        if (up || down || left || right)
+        {
+            vel += dir;
+            vel = Vector2.ClampMagnitude(vel, max_speed * Time.deltaTime);
+        }
 
         transform.position += new Vector3(vel.x, vel.y, 0);
 

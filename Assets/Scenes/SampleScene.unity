@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vel: {x: 0, y: 0}
   speed: 0.5
-  decel: 0.3
+  decel: 0.95
 --- !u!212 &877694966
 SpriteRenderer:
   m_ObjectHideFlags: 0
