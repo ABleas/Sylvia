@@ -80,27 +80,34 @@ public class SylviaController : MonoBehaviour
         Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         float h = cam.orthographicSize;
         float w = h * cam.aspect;
-        Vector3 p = transform.position;
         float safe_pad = 0.5f;
 
 
-        if (transform.position.x < -w + safe_pad)
+        float left_edge = -w + safe_pad;
+        if (transform.position.x < left_edge)
         {
-            transform.position = new Vector3(-w + safe_pad, p.y, p.z);
+            Vector3 p = transform.position;
+            transform.position = new Vector3(left_edge, p.y, p.z);
         }
-        if (transform.position.x > w - safe_pad)
+
+        float right_edge = w - safe_pad;
+        if (transform.position.x > right_edge)
         {
-            transform.position = new Vector3(w - safe_pad, p.y, p.z);
+            Vector3 p = transform.position;
+            transform.position = new Vector3(right_edge, p.y, p.z);
         }
 
         float bottom = -h + safe_pad;
         if (transform.position.y < bottom)
         {
+            Vector3 p = transform.position;
             transform.position = new Vector3(p.x, bottom, p.z);
         }
+
         float top = (-h * max_height) - safe_pad;
         if (transform.position.y > top)
         {
+            Vector3 p = transform.position;
             transform.position = new Vector3(p.x, top, p.z);
         }
     }
