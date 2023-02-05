@@ -22,6 +22,7 @@ public class Globals : MonoBehaviour
 
     void Start()
     {
+      // Fixes stutter on Android devices
       Application.targetFrameRate = 61;
     }
 }
