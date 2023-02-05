@@ -10,11 +10,8 @@ public class Globals : MonoBehaviour
     // Static singleton instance
     private static Globals _instance;
 
-    // Static singleton property
     public static Globals Instance
     {
-        // Here we use the ?? operator, to return 'instance' if 'instance' does not equal null
-        // otherwise we assign instance to a new component and return that
         get { return _instance ?? (_instance = new GameObject("Globals").AddComponent<Globals>()); }
     }
 
