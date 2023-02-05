@@ -18,6 +18,7 @@ public class CloudScript : MonoBehaviour
 
     void drop()
     {
-        transform.Translate(new Vector3(0.0f, -2 * Time.deltaTime, 0.0f), Space.World);
+        float speed = Globals.Instance.scroll_speed;
+        transform.Translate(new Vector3(0.0f, speed * Time.deltaTime, 0.0f), Space.World);
     }
 }

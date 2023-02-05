@@ -15,7 +15,7 @@ public class Fragment : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.position.y < -10)
+            if (child.position.y < Globals.DESPAWN_Y)
             {
                 Object.Destroy(child.gameObject);
             }
