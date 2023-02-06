@@ -9,13 +9,15 @@ public class FragmentController : MonoBehaviour
 
     public GameObject fragment1;
     public GameObject fragment2;
+    public GameObject fragment3;
+    public GameObject fragment4;
 
     private GameObject[] fragments;
 
     // Start is called before the first frame update
     void Start()
     {
-        fragments = new GameObject[] { fragment1, fragment2 };
+        fragments = new GameObject[] { fragment1, fragment2, fragment3, fragment4 };
     }
 
     // Update is called once per frame

@@ -25,7 +25,7 @@ public class GemSpawnController : MonoBehaviour
         {
             spawn_timer = spawn_rate;
 
-            Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Camera cam = GameObject.FindObjectOfType<Camera>();
             float h = cam.orthographicSize;
             float w = h * cam.aspect;
 

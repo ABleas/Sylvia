@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5130019682233836290}
   - component: {fileID: 5050866849478497479}
   - component: {fileID: 6802167839095003169}
-  - component: {fileID: -3101173106664944248}
+  - component: {fileID: 8579657434464712996}
   m_Layer: 0
   m_Name: Cloud1
   m_TagString: HardCloud
@@ -102,7 +102,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03, y: 0}
   m_Size: {x: 2, y: 1.2}
   m_Direction: 1
---- !u!114 &-3101173106664944248
+--- !u!114 &8579657434464712996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
