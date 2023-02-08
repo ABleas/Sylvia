@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:GroupBox style="align-items: center;">
+        <ui:Label text="Sylvia" style="align-items: center; justify-content: center; white-space: normal; -unity-text-align: middle-center; flex-wrap: wrap; height: 1844px; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=24318569e3edeec45909e26bde3e3792&amp;type=3#NotInter-Regular&apos;); font-size: 193px;" />
+        <ui:Button text="Play!" display-tooltip-when-elided="true" name="play_button" style="font-size: 62px; margin-left: 17px; margin-right: 17px; margin-top: 17px; margin-bottom: 17px; height: 208px; -unity-text-align: middle-center; white-space: nowrap; align-items: center; width: 80%; justify-content: flex-start;" />
+    </ui:GroupBox>
+</ui:UXML>

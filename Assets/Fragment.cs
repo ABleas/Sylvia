@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class Fragment : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+  // Start is called before the first frame update
+  void Start()
+  {
+
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    foreach (Transform child in transform)
     {
-        
+      if (child.position.y < Globals.DESPAWN_Y)
+      {
+        Object.Destroy(child.gameObject);
+      }
     }
 
-    // Update is called once per frame
-    void Update()
+    if (transform.childCount == 0)
     {
-        foreach (Transform child in transform)
-        {
-            if (child.position.y < Globals.DESPAWN_Y)
-            {
-                Object.Destroy(child.gameObject);
-            }
-        }
-
-        if (transform.childCount == 0)
-        {
-            Object.Destroy(this.gameObject);
-        }
+      Object.Destroy(this.gameObject);
     }
+  }
 }

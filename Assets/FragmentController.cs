@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class FragmentController : MonoBehaviour
 {
-    public float spawn_rate = 2.0f;
-    private float spawn_timer = 0.0f;
+  public float spawn_rate = 2.0f;
+  private float spawn_timer = 1.0f;
 
-    public GameObject fragment1;
-    public GameObject fragment2;
-    public GameObject fragment3;
-    public GameObject fragment4;
+  public GameObject fragment1;
+  public GameObject fragment2;
+  public GameObject fragment3;
+  public GameObject fragment4;
 
-    private GameObject[] fragments;
+  private GameObject[] fragments;
 
-    // Start is called before the first frame update
-    void Start()
+  void Start()
+  {
+    fragments = new GameObject[] { fragment1, fragment2, fragment3, fragment4 };
+  }
+
+  void Update()
+  {
+    if (Globals.Instance.game_start) spawn_timer -= Time.deltaTime;
+    if (spawn_timer <= 0.0f)
     {
-        fragments = new GameObject[] { fragment1, fragment2, fragment3, fragment4 };
-    }
+      spawn_timer = spawn_rate;
 
-    // Update is called once per frame
-    void Update()
-    {
-        spawn_timer -= Time.deltaTime;
-        if (spawn_timer <= 0.0f)
-        {
-            spawn_timer = spawn_rate;
-
-            GameObject fragment = fragments[Random.Range(0, fragments.Length)];
-            Instantiate(fragment, transform.position, transform.rotation);
-        }
+      GameObject fragment = fragments[Random.Range(0, fragments.Length)];
+      Instantiate(fragment, transform.position, transform.rotation);
     }
+  }
 }
